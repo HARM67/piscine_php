@@ -18,22 +18,26 @@ class Color
 			$this->green = intval($kwargs["green"]);
 			$this->blue= intval($kwargs["blue"]);
 			if (self::$verbose === true)
-				print("La classe color a ete correctement instanciee avec les valeurs : $this\n");
-		}
-		else if (self::$verbose)
-		{
-			print("La classe Color n'a pas pu etre instancee avec les parametres\n");
-			print_r($kwargs);
+				print("$this constructed.\n");
 		}
 	}
 	public function		__destruct()
 	{
 		if (self::$verbose === true)
-			print("Une instance de classe color a ete detruite !\n");
+			print("$this destructed.\n");
 	}
 	public function		__toString()
 	{
-		return ("Color(red: $this->red, green: $this->green, blue: $this->blue)");
+		return (sprintf("Color( red: %3u, green: %3u, blue: %3u )", $this->red, $this->green, $this->blue));
+	}
+	public function		__get($att)
+	{
+		print("No public attribute named $attin class color.\n");
+	}
+	public function		__set($att, $value)
+	{
+		print("No public attribute named $attin class color.\n");
+		print_r($value);
 	}
 	public function		add(Color	$c)
 	{
@@ -51,12 +55,12 @@ class Color
 		$rt->blue	-= $c->blue;
 		return ($rt);
 	}
-	public function		mult(Color	$c)
+	public function		mult($c)
 	{
 		$rt = clone $this;
-		$rt->red	*= $c->red;
-		$rt->green	*= $c->green;
-		$rt->blue	*= $c->blue;
+		$rt->red	*= $c;
+		$rt->green	*= $c;
+		$rt->blue	*= $c;
 		return ($rt);
 	}
 	public static function		doc()
