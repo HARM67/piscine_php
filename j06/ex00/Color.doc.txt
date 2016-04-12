@@ -1,0 +1,24 @@
+### Manuel de la classe Color ###
+
+Utilisation du constructeur:
+	Color(array("rgb", => $data));
+	Color(array("red", => $red, $green, $blue));
+
+Attributs public:
+	int				$red;
+	int				$green;
+	int				$blue;
+	static bool		$verbose;
+
+Methodes public:
+	Color			add(Color	$c);
+	Color			sub(Color	$c);
+	Color			mult(Color	$c);
+	statici string	doc();
+
+Utilisation:
+	- Les methodes public add, sub et mult renvoyent une nouvelle instance contenant respectivement l'addition, la soustraction et la multiplication des composantes de couleur de leur instance avec celles de l'instance (Color) passee en parametre;
+	- La methode public static doc permet d'afficher ce manuel;
+
+L'attribut static $verbose permet d'activer ou de desactiver les informations de debugage;
+
