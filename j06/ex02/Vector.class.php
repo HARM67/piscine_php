@@ -17,12 +17,6 @@ class	Vector
 		$this->_y = $kwargs["dest"]->getY() - $orig->getY();
 		$this->_z = $kwargs["dest"]->getZ() - $orig->getZ();
 		$this->_w = 0.0;
-		/*
-		$this->_x = floatval($kwargs["dest"]->getX() - $orig->getX());
-		$this->_y = floatval($kwargs["dest"]->getY() - $orig->getY());
-		$this->_z = floatval($kwargs["dest"]->getZ() - $orig->getZ());
-		$this->_w = floatval(0.0);
-		 */
 		if (self::$verbose === true)
 			print("$this constructed\n");
 	}
@@ -99,8 +93,6 @@ class	Vector
 		$y = ($this->_z * $rhs->getX()) - ($this->_x * $rhs->getZ());
 		$z = ($this->_x * $rhs->getY()) - ($this->_y * $rhs->getX());
 		$rt = new Vector(array("dest" => new Vertex(array("x" => $x, "y" => $y, "z" => $z))));
-		//$rt = new Vector(array("dest" => new Vertex(array("x" => -525.52, "y" => -141.77, "z" => 91.45))));
-
 		return ($rt);
 	}
 	public static function		doc()
