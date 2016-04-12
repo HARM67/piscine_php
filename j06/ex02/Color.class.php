@@ -1,5 +1,5 @@
 <?php
-class Color
+class	Color
 {
 	public						$red;
 	public						$green;

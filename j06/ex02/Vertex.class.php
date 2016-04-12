@@ -1,6 +1,6 @@
 <?php
 require_once("Color.class.php");
-class Vertex
+class	Vertex
 {
 	private						$_x;
 	private						$_y;
@@ -27,8 +27,8 @@ class Vertex
 			$this->_w = floatval($kwargs["w"]);
 		else
 			$this->_w = 1.0;
-			if (self::$verbose === true)
-				print("$this constructed\n");
+		if (self::$verbose === true)
+			print("$this constructed\n");
 	}
 	public function		__destruct()
 	{

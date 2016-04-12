@@ -5,7 +5,7 @@ class Color
 	public						$green;
 	public						$blue;
 	public static				$verbose = false;
-	public function		__construct( array $kwargs)
+	public function		__construct(array $kwargs)
 	{
 		if (array_key_exists("rgb", $kwargs))
 		{
@@ -32,11 +32,11 @@ class Color
 	}
 	public function		__get($att)
 	{
-		print("No public attribute named $attin class color.\n");
+		print("No public attribute named $attin class Color.\n");
 	}
 	public function		__set($att, $value)
 	{
-		print("No public attribute named $attin class color.\n");
+		print("No public attribute named $attin class Color.\n");
 		print_r($value);
 	}
 	public function		add(Color	$c)
