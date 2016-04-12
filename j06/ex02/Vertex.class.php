@@ -1,6 +1,6 @@
 <?php
 require_once("Color.class.php");
-class	Vertex
+class Vertex
 {
 	private						$_x;
 	private						$_y;
@@ -27,8 +27,8 @@ class	Vertex
 			$this->_w = floatval($kwargs["w"]);
 		else
 			$this->_w = 1.0;
-		if (self::$verbose === true)
-			print("$this constructed\n");
+			if (self::$verbose === true)
+				print("$this constructed\n");
 	}
 	public function		__destruct()
 	{
@@ -37,7 +37,10 @@ class	Vertex
 	}
 	public function		__toString()
 	{
-		return (sprintf("Vertex( x: %.2f, y: %.2f, z: %.2f, w: %.2f, color: $this->_color )", $this->_x, $this->_y, $this->_z, $this->_w));
+		if (self::$verbose === true)
+			return (sprintf("Vertex( x: %.2f, y: %.2f, z:%.2f, w:%.2f, $this->_color )", $this->_x, $this->_y, $this->_z, $this->_w));
+		else
+			return (sprintf("Vertex( x: %.2f, y: %.2f, z:%.2f, w:%.2f )", $this->_x, $this->_y, $this->_z, $this->_w));
 	}
 	public function		__get($att)
 	{

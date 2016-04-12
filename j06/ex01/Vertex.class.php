@@ -37,7 +37,10 @@ class Vertex
 	}
 	public function		__toString()
 	{
-		return (sprintf("Vertex( x: %.2f, y: %.2f, z: %.2f, w: %.2f, color: $this->_color )", $this->_x, $this->_y, $this->_z, $this->_w));
+		if (self::$verbose === true)
+			return (sprintf("Vertex( x: %.2f, y: %.2f, z:%.2f, w:%.2f, $this->_color )", $this->_x, $this->_y, $this->_z, $this->_w));
+		else
+			return (sprintf("Vertex( x: %.2f, y: %.2f, z:%.2f, w:%.2f )", $this->_x, $this->_y, $this->_z, $this->_w));
 	}
 	public function		__get($att)
 	{

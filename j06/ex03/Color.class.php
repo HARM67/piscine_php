@@ -9,17 +9,18 @@ class	Color
 	{
 		if (array_key_exists("rgb", $kwargs))
 		{
-			if (self::$verbose === true)
-				print("La classe color a ete correctement instanciee avec les valeurs : $this\n");
+			$this->red = (intval($kwargs["rgb"]) >> 16) & 0xff;
+			$this->green = (intval($kwargs["rgb"]) >> 8) & 0xff;
+			$this->blue= intval($kwargs["rgb"]) & 0xff;
 		}
 		else if (array_key_exists("red", $kwargs) && array_key_exists("green", $kwargs) && array_key_exists("blue", $kwargs))
 		{
 			$this->red = intval($kwargs["red"]);
 			$this->green = intval($kwargs["green"]);
 			$this->blue= intval($kwargs["blue"]);
-			if (self::$verbose === true)
-				print("$this constructed.\n");
 		}
+		if (self::$verbose === true)
+			print("$this constructed.\n");
 	}
 	public function		__destruct()
 	{
@@ -41,26 +42,26 @@ class	Color
 	}
 	public function		add(Color	$c)
 	{
-		$rt = clone $this;
-		$rt->red	+= $c->red;
-		$rt->green	+= $c->green;
-		$rt->blue	+= $c->blue;
+		$rt = new Color(array(	"red"	=> $this->red + $c->red,
+			"green"	=> $this->green + $c->green,
+			"blue"	=> $this->blue + $c->blue
+		));
 		return ($rt);
 	}
 	public function		sub(Color	$c)
 	{
-		$rt = clone $this;
-		$rt->red	-= $c->red;
-		$rt->green	-= $c->green;
-		$rt->blue	-= $c->blue;
+		$rt = new Color(array(	"red"	=> $this->red - $c->red,
+			"green"	=> $this->green - $c->green,
+			"blue"	=> $this->blue - $c->blue
+		));
 		return ($rt);
 	}
 	public function		mult($c)
 	{
-		$rt = clone $this;
-		$rt->red	*= $c;
-		$rt->green	*= $c;
-		$rt->blue	*= $c;
+		$rt = new Color(array(	"red"	=> $this->red * $c,
+			"green"	=> $this->green * $c,
+			"blue"	=> $this->blue * $c
+		));
 		return ($rt);
 	}
 	public static function		doc()

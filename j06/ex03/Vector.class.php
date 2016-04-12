@@ -10,19 +10,19 @@ class	Vector
 	public function		__construct(array $kwargs)
 	{
 		if (array_key_exists("orig", $kwargs))
-		{
-			$this->_x = floatval($kwargs["dest"]->getX() - $kwargs["orig"]->getX());
-			$this->_y = floatval($kwargs["dest"]->getY() - $kwargs["orig"]->getY());
-			$this->_z = floatval($kwargs["dest"]->getZ() - $kwargs["orig"]->getZ());
-			$this->_w = floatval(0.0);
-		}
+			$orig = $kwargs["orig"];
 		else
-		{
-			$this->_x = floatval($kwargs["dest"]->getX());
-			$this->_y = floatval($kwargs["dest"]->getY());
-			$this->_z = floatval($kwargs["dest"]->getZ());
-			$this->_w = floatval(0.0);
-		}
+			$orig = new Vertex(array("x" => 0.0, "y" => 0.0, "z" => 0.0));
+		$this->_x = $kwargs["dest"]->getX() - $orig->getX();
+		$this->_y = $kwargs["dest"]->getY() - $orig->getY();
+		$this->_z = $kwargs["dest"]->getZ() - $orig->getZ();
+		$this->_w = 0.0;
+		/*
+		$this->_x = floatval($kwargs["dest"]->getX() - $orig->getX());
+		$this->_y = floatval($kwargs["dest"]->getY() - $orig->getY());
+		$this->_z = floatval($kwargs["dest"]->getZ() - $orig->getZ());
+		$this->_w = floatval(0.0);
+		 */
 		if (self::$verbose === true)
 			print("$this constructed\n");
 	}
@@ -33,7 +33,7 @@ class	Vector
 	}
 	public function		__toString()
 	{
-		return (sprintf("Vector( x: %.2f, y: %.2f, z: %.2f, w: %.2f )", $this->_x, $this->_y, $this->_z, $this->_w));
+		return (sprintf("Vector( x:%.2f, y:%.2f, z:%.2f, w:%.2f )", $this->_x, $this->_y, $this->_z, $this->_w));
 	}
 	public function		getX()
 	{
@@ -65,39 +65,27 @@ class	Vector
 	}
 	public function		add(Vector $rhs)
 	{
-		$rt = clone $this;
-		$rt->_x += $rhs->_x;
-		$rt->_y += $rhs->_y;
-		$rt->_z += $rhs->_z;
+		$rt = new Vector(array("dest" => new Vertex(array("x" => $this->getX() + $rhs->getX(), "y" => $this->getY() + $rhs->getY(), "z" => $this->getZ() + $rhs->getZ()))));
 		return ($rt);
 	}
 	public function		sub(Vector $rhs)
 	{
-		$rt = clone $this;
-		$rt->_x -= $rhs->_x;
-		$rt->_y -= $rhs->_y;
-		$rt->_z -= $rhs->_z;
+		$rt = new Vector(array("dest" => new Vertex(array("x" => $this->getX() - $rhs->getX(), "y" => $this->getY() - $rhs->getY(), "z" => $this->getZ() - $rhs->getZ()))));
 		return ($rt);
 	}
 	public function		opposite()
 	{
-		$rt = clone $this;
-		$rt->_x = -$rt->_x;
-		$rt->_y = -$rt->_y;
-		$rt->_z = -$rt->_z;
+		$rt = new Vector(array("dest" => new Vertex(array("x" => -$this->getX(), "y" => -$this->getY(), "z" => -$this->getZ()))));
 		return ($rt);
 	}
 	public function		scalarProduct($k)
 	{
-		$rt = clone $this;
-		$rt->_x *= $k;
-		$rt->_y *= $k;
-		$rt->_z *= $k;
+		$rt = new Vector(array("dest" => new Vertex(array("x" => $this->getX() * $k, "y" => $this->getY() * $k, "z" => $this->getZ() * $k))));
 		return ($rt);
 	}
 	public function		dotProduct(Vector $rhs)
 	{
-		$rt = floatval(($this->_x * $rhs->_x) + ($this->_y * $rhs->_y) + ($this->_z * $rhs->_z));
+		$rt = floatval(($this->_x * $rhs->getX()) + ($this->_y * $rhs->getY()) + ($this->_z * $rhs->getZ()));
 		return ($rt);
 	}
 	public function		cos(Vector $rhs)
@@ -107,10 +95,12 @@ class	Vector
 	}
 	public function		crossProduct(Vector $rhs)
 	{
-		$rt = clone $this;
-		$rt->_x = ($this->_y * $rhs->_z) - ($this->_z * $rhs->y);
-		$rt->_y = ($this->_z * $rhs->_x) - ($this->_x * $rhs->z);
-		$rt->_z = ($this->_x * $rhs->_y) - ($this->_y * $rhs->x);
+		$x = ($this->_y * $rhs->getZ()) - ($this->_z * $rhs->getY());
+		$y = ($this->_z * $rhs->getX()) - ($this->_x * $rhs->getZ());
+		$z = ($this->_x * $rhs->getY()) - ($this->_y * $rhs->getX());
+		$rt = new Vector(array("dest" => new Vertex(array("x" => $x, "y" => $y, "z" => $z))));
+		//$rt = new Vector(array("dest" => new Vertex(array("x" => -525.52, "y" => -141.77, "z" => 91.45))));
+
 		return ($rt);
 	}
 	public static function		doc()
