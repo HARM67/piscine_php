@@ -21,7 +21,7 @@ class	Matrix
 			$this->_mtrx["z"] = array("vtcX" => 0.0, "vtcY" => 0.0, "vtcZ" => 1.0, "vtxO" => 0.0);
 			$this->_mtrx["w"] = array("vtcX" => 0.0, "vtcY" => 0.0, "vtcZ" => 0.0, "vtxO" => 1.0);
 			if (self::$verbose)
-				print ("Matrix IDENTITY preset instance constructed\n");
+				print ("Matrix IDENTITY instance constructed\n");
 		}
 		else if ($kwargs["preset"] === self::SCALE)
 		{
@@ -76,17 +76,10 @@ class	Matrix
 			$range = $near - $far;
 			$this->_mtrx["x"] = array("vtcX" => 1.0 / ($tanHalfFOV * floatval($kwargs["ratio"])) , "vtcY" => 0.0, "vtcZ" => 0.0, "vtxO" => 0.0);
 			$this->_mtrx["y"] = array("vtcX" => 0.0, "vtcY" => 1.0 / $tanHalfFOV, "vtcZ" => 0.0, "vtxO" => 0.0);
-			$this->_mtrx["z"] = array("vtcX" => 0.0, "vtcY" => 0.0, "vtcZ" => ((-$near - $far) / $range), "vtxO" => (2.0 * $far * $near / $range));
-			$this->_mtrx["w"] = array("vtcX" => 0.0, "vtcY" => 0.0, "vtcZ" => 1.0, "vtxO" => 0.0);
+			$this->_mtrx["z"] = array("vtcX" => 0.0, "vtcY" => 0.0, "vtcZ" => -((-$near - $far) / $range), "vtxO" => (2.0 * $far * $near / $range));
+			$this->_mtrx["w"] = array("vtcX" => 0.0, "vtcY" => 0.0, "vtcZ" => -1.0, "vtxO" => 0.0);
 			if (self::$verbose)
 				print ("Matrix PROJECTION preset instance constructed\n");
-		}
-		foreach ($this->_mtrx as &$line)
-		{
-			foreach ($line as &$col)
-			{
-				$col = round($col, 2);
-			}
 		}
 	}
 	public function		__destruct()
@@ -94,22 +87,43 @@ class	Matrix
 		if (self::$verbose)
 			print("Matrix instance destructed\n");
 	}
+	private function	_mult_one($key1, $key2, $tab1, $tab2)
+	{
+		$rt = 0;
+		$rt = $tab1[$key1]["vtcX"] * $tab2["x"][$key2];
+		$rt += $tab1[$key1]["vtcY"] * $tab2["y"][$key2];
+		$rt += $tab1[$key1]["vtcZ"] * $tab2["z"][$key2];
+		$rt += $tab1[$key1]["vtxO"] * $tab2["w"][$key2];
+		return ($rt);
+	}
+	private function	_mult_vertex($key1, $tab1, $tab2)
+	{
+		$rt = 0;
+		$rt = $tab1[$key1]["vtcX"] * $tab2->getX();
+		$rt += $tab1[$key1]["vtcY"] * $tab2->getY();
+		$rt += $tab1[$key1]["vtcZ"] * $tab2->getZ();
+		$rt += $tab1[$key1]["vtxO"] * $tab2->getW();
+		return ($rt);
+	}
 	public function		mult(Matrix $rhs)
 	{
 		$rt  = clone ($this);
-		foreach ($rt as $key1=>&$line)
+		foreach ($rt->_mtrx as $key1=>&$line)
 		{
 			foreach ($line as $key2=>&$col)
 			{
-				
+				$col = $this->_mult_one($key1, $key2, $this->getMatrix(), $rhs->getMatrix());
 			}
 		}
 		return ($rt);
-		//$rt = new Matrix("preset" => $rhs->get);
 	}
 	public function		transformVertex(Vertex $vtx)
 	{
-
+		foreach ($this->getMatrix() as $key1=>$line)
+		{
+				$tmp[$key1] = $this->_mult_vertex($key1, $this->getMatrix(), $vtx);
+		}
+		return (new Vertex(array("x" => $tmp["x"], "y" => $tmp["y"],"z" => $tmp["z"],"w" => $tmp["w"])));
 	}
 	public function		__toString()
 	{
@@ -118,7 +132,7 @@ class	Matrix
 		$rt .= sprintf("x | %.2f | %.2f | %.2f | %.2f\n", $this->_mtrx["x"]["vtcX"],$this->_mtrx["x"]["vtcY"],$this->_mtrx["x"]["vtcZ"],$this->_mtrx["x"]["vtxO"]);
 		$rt .= sprintf("y | %.2f | %.2f | %.2f | %.2f\n", $this->_mtrx["y"]["vtcX"],$this->_mtrx["y"]["vtcY"],$this->_mtrx["y"]["vtcZ"],$this->_mtrx["y"]["vtxO"]);
 		$rt .= sprintf("z | %.2f | %.2f | %.2f | %.2f\n", $this->_mtrx["z"]["vtcX"],$this->_mtrx["z"]["vtcY"],$this->_mtrx["z"]["vtcZ"],$this->_mtrx["z"]["vtxO"]);
-		$rt .= sprintf("w | %.2f | %.2f | %.2f | %.2f\n", $this->_mtrx["w"]["vtcX"],$this->_mtrx["w"]["vtcY"],$this->_mtrx["w"]["vtcZ"],$this->_mtrx["w"]["vtxO"]);
+		$rt .= sprintf("w | %.2f | %.2f | %.2f | %.2f", $this->_mtrx["w"]["vtcX"],$this->_mtrx["w"]["vtcY"],$this->_mtrx["w"]["vtcZ"],$this->_mtrx["w"]["vtxO"]);
 		return ($rt);
 	}
 	public function		getMatrix()
