@@ -4,47 +4,47 @@ require_once("Vertex.class.php");
 require_once("Vector.class.php");
 class	Camera
 {
-	private		$ratio;
-	private		$near;
-	private		$fov;
-	private		$far;
-	private		$width;
-	private		$height;
-	private		$origin;
-	private		$origin_mtrx;
-	private		$view_matrix;
-	private		$projection_matrix;
+	private		$_ratio;
+	private		$_near;
+	private		$_fov;
+	private		$_far;
+	private		$_width;
+	private		$_height;
+	private		$_origin;
+	private		$_origin_mtrx;
+	private		$_view_matrix;
+	private		$_projection_matrix;
 
 	public static				$verbose = false;
 	public function		__construct(array $kwargs)
 	{
-		$this->fov			= $kwargs["fov"];
-		$this->near			= $kwargs["near"];
-		$this->far			= $kwargs["far"];
-		$this->origin		= $kwargs["origin"];
-		$this->origin_mtrx	= new Matrix(array("preset" => Matrix::TRANSLATION, "vtc" => (new Vector(array("dest" => $this->origin)))->opposite()));
-		$this->orientation	= $kwargs["orientation"]->transpose();
+		$this->_fov			= $kwargs["fov"];
+		$this->_near			= $kwargs["near"];
+		$this->_far			= $kwargs["far"];
+		$this->_origin		= $kwargs["origin"];
+		$this->_origin_mtrx	= new Matrix(array("preset" => Matrix::TRANSLATION, "vtc" => (new Vector(array("dest" => $this->_origin)))->opposite()));
+		$this->_orientation	= $kwargs["orientation"]->transpose();
 		if (array_key_exists("ratio", $kwargs))
 		{
-			$this->ratio		= $kwargs["ratio"];
+			$this->_ratio		= $kwargs["ratio"];
 		}
 		else
 		{
-			$this->ratio		= $kwargs["width"] / $kwargs["height"];
+			$this->_ratio		= $kwargs["width"] / $kwargs["height"];
 		}
-		$this->view_matrix = $this->orientation->mult($this->origin_mtrx);
-		$this->projection_matrix = new Matrix(array("preset" => Matrix::PROJECTION, "ratio" => $this->ratio, "near" => $this->near, "fov" => $this->fov, "far" => $this->far));
+		$this->_view_matrix = $this->_orientation->mult($this->_origin_mtrx);
+		$this->_projection_matrix = new Matrix(array("preset" => Matrix::PROJECTION, "ratio" => $this->_ratio, "near" => $this->_near, "fov" => $this->_fov, "far" => $this->_far));
 		if (self::$verbose === true)
 			print("Camera instance constructed\n");
 	}
 	public function		__toString()
 	{
 		$rt = "Camera( \n";
-		$rt .= "+ Origine: ".$this->origin."\n";
-		$rt .= "+ tT:\n".$this->origin_mtrx."\n";
-		$rt .= "+ tR:\n".$this->orientation."\n";
-		$rt .= "+ tR->mult( tT ):\n".$this->view_matrix."\n";
-		$rt .= "+ Proj:\n".$this->projection_matrix."\n)";
+		$rt .= "+ Origine: ".$this->_origin."\n";
+		$rt .= "+ tT:\n".$this->_origin_mtrx."\n";
+		$rt .= "+ tR:\n".$this->_orientation."\n";
+		$rt .= "+ tR->mult( tT ):\n".$this->_view_matrix."\n";
+		$rt .= "+ Proj:\n".$this->_projection_matrix."\n)";
 		return ($rt);
 	}
 	public function		__destruct()
@@ -54,8 +54,8 @@ class	Camera
 	}
 	public function watchVertex(Vertex $worldVertex)
 	{
-		$rt = $this->view_matrix->transformVertex($worldVertex);
-		$rt = $this->projection_matrix->transformVertex($rt);
+		$rt = $this->_view_matrix->transformVertex($worldVertex);
+		$rt = $this->_projection_matrix->transformVertex($rt);
 		return ($rt);
 	}
 	public static function		doc()

@@ -22,8 +22,6 @@ Camera::$verbose = True;
 
 $vtxO = new Vertex( array( 'x' => 20.0, 'y' => 20.0, 'z' => 80.0 ) );
 $R    = new Matrix( array( 'preset' => Matrix::RY, 'angle' => M_PI ) );
-//print($vtxO."\n");
-//print($R."\n");
 $cam  = new Camera( array( 'origin' => $vtxO,
 						   'orientation' => $R,
 						   'width' => 640,
@@ -33,4 +31,5 @@ $cam  = new Camera( array( 'origin' => $vtxO,
 						   'far' => 100.0) );
 
 print( $cam . PHP_EOL );
+
 ?>
