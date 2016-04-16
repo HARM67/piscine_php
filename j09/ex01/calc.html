@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<meta charset="UTF-8">
+	</HEAD>
+	<BODY>
+			<input type = "text" id = "a"/>
+			<select type = "select" id = "op"/>
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+				<option value="%">%</option>
+			</select>
+			<input type = "text" id = "b"/>
+			<input type = "submit" value="submit" id = "submit"/>
+
+		<SCRIPT>
+			var button = document.getElementById("submit");
+			var op = document.getElementById("op");
+			var a = document.getElementById("a");
+			var b = document.getElementById("b");
+						button.onclick = function()
+			{
+				var na = parseInt(a.value);
+				var nb = parseInt(b.value);
+				if (a.value == "" || b.value == "" || isNaN(a.value) || isNaN(b.value) || na < 0 || nb < 0)
+				{
+					alert("Error :(");
+					return ;
+				}
+				if (op.value === "+")
+				{
+					console.log(na + nb);
+					alert(na + nb);
+				}
+				else if (op.value === "-")
+				{
+					console.log(na - nb);
+					alert(na - nb);
+				}
+				else if (op.value === "*")
+				{
+					console.log(na * nb);
+					alert(na * nb);
+				}
+				else if (op.value === "/")
+				{
+					if (nb === 0)
+					{
+						console.log("It's over 9000!");
+						alert("It’s over 9000!");
+						return ;
+					}
+					console.log(na / nb);
+					alert(na / nb);
+				}
+				else if (op.value === "%")
+				{
+					if (nb === 0)
+					{
+						console.log("It’s over 9000!");
+						alert("It’s over 9000!");
+						return ;
+					}
+					console.log(na % nb);
+					alert(na % nb);
+				}
+			}
+			setInterval(function()
+			{
+				alert("’Please, use me...");
+			}, 30000);
+		</SCRIPT>
+	</BODY>
+</HTML>

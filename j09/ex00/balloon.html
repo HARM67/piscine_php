@@ -5,14 +5,8 @@
 			#ballon
 			{
 				background-color: red;
-				position:absolute;
-				right:0px;
-				left:0px;
-				top:0px;
-				bottom:0px;
 				height:200px;
 				width:200px;
-				margin:auto;
 				border-radius:420px;
 			}
 		</STYLE>
@@ -21,6 +15,7 @@
 		<DIV id = "ballon" >
 		</DIV>
 		<SCRIPT>
+			var count = 0;
 			ballon.onclick = function()
 			{
 				var ballon = document.getElementById("ballon");
@@ -28,9 +23,48 @@
 				if (size > 420)
 					size = 200;
 				console.log(size);
-				ballon.style.height = size;
-				ballon.style.width = size;
-				ballon.style.backgroundColor = green;
+				ballon.style.height = size + "px";
+				ballon.style.width = size + "px";
+				count++;
+				if (count === 3)
+					count = 0;
+				if (count === 0)
+				{
+					ballon.style.backgroundColor = "red";
+				}
+				else if (count === 1)
+				{
+					ballon.style.backgroundColor = "green";
+				}
+				else if (count === 2)
+				{
+					ballon.style.backgroundColor = "blue";
+				}
+			}
+			ballon.onmouseleave = function()
+			{
+				var ballon = document.getElementById("ballon");
+				var size = ballon.offsetWidth - 5;
+				if (size < 200)
+					size = 200;
+				console.log(size);
+				ballon.style.height = size + "px";
+				ballon.style.width = size + "px";
+				count--;
+				if (count < 0)
+					count = 2;
+				if (count === 0)
+				{
+					ballon.style.backgroundColor = "red";
+				}
+				else if (count === 1)
+				{
+					ballon.style.backgroundColor = "green";
+				}
+				else if (count === 2)
+				{
+					ballon.style.backgroundColor = "blue";
+				}
 			}
 		</SCRIPT>
 	</BODY>

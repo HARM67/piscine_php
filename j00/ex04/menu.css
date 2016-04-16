@@ -1,0 +1,65 @@
+body
+{
+	font-family:sans-serif;
+}
+
+img
+{
+	width:150px;
+	background-color:black;
+}
+
+a
+{
+	text-decoration:none;
+}
+
+ul
+{
+	list-style:none;
+	margin:0px;
+	padding:10px;
+}
+
+ul ul
+{
+	display: none;
+	position: absolute;
+	left: 153px;
+	top: 0px;
+	margin:0px;
+	padding: 0px;
+}
+
+li 
+{
+	list-style-type: none;
+	position: relative;
+	width: 150px;
+	background-color:grey;
+	padding: 2px;
+	margin: 0px
+}
+
+li:hover
+{
+	opacity:1.0;
+}
+
+li.plus
+{
+	background-position:right;
+	background-image: url(illustrations/fdroite.gif);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid grey;
+}
+
+li li
+{
+	opacity:0.5;
+}
+
+li:hover ul.lv2, li li:hover ul.lv3
+{
+	display:block;
+}

@@ -1,0 +1,9 @@
+<?php
+include("define.php");
+include("basic_function.php");
+include("user_function.php");
+include("product_function.php");
+include("category_function.php");
+include("link_data_function.php");
+include("cart_function.php");
+?>

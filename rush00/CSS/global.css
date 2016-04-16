@@ -1,0 +1,225 @@
+body
+{
+	font-family:sans-serif;
+	margin:0px;
+	background-image: url("../img/military2.jpg");
+}
+
+h1
+{
+	color:white;
+}
+
+ul
+{
+}
+
+li
+{
+	list-style:none;
+}
+
+.head_bar
+{
+	position:fixed;
+	display:block;
+	margin:0px;
+	padding:0px;
+	width:100%;
+	height:50px;
+	background-color:#556B2F;
+}
+
+
+.msg_error
+{
+	color: red;
+}
+
+.content
+{
+	padding-top:50px;
+	text-align:center;
+	border-color:1px black;
+}
+
+.head_message
+{
+	margin:10px;
+	padding:3px;
+	position:relative;
+	font-size:large;
+	width:400px;
+	color:white;
+	text-align:left;
+}
+
+.user_log
+{
+	width:700px;
+	padding:0px;
+	display:block;
+	position:absolute;
+	right:0px;
+	margin:0px;
+	margin-top:15px;
+	text-align:right;
+}
+
+form
+{
+	width:550px;
+}
+.user_log form ul
+{
+	margin:0px;
+	padding:0px;
+	width:700px;
+}
+.user_log form ul li
+{
+	position:relative;
+	display:inline-block;
+	right:15px;
+	top:-10px;
+	list-style:none;
+}
+
+.menu ul
+{
+	text-align:center;
+	font-size:25px;
+	font-color:black;
+	margin:0px;
+	padding:0px;
+	width:200px;
+}
+.menu
+{
+	position: fixed;
+	height:1200px;
+	margin-top: 10px;
+/*	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;*/
+	background-color:#556B2F;
+}
+
+.basic_table
+{
+	position:absolute;
+	top:40%;
+	left:40%;
+	font-size: 130%;
+	//margin-right:auto;
+	transform: translate(-50%, -50%);
+	background-color:rgba(255,255,255,0.3);
+	//background-image: url("../img/military2.jpg")
+}
+
+.basic_table th
+{
+	background-color:rgba(255, 255, 255, 0.5);
+}
+
+.product_list
+{
+	position:relative;
+	text-align:center;
+	display:inline-block;
+	margin:0px;
+	padding:0px;
+	background-color:white;
+}
+
+.product_list_img
+{
+	position:relative;
+	width:250px;
+	height:250px;
+	background-size: 250px 250px;
+}
+
+.see_product_img
+{
+	width:70px;
+	height:70px;
+	background-size: 70px 70px;
+}
+
+.pannier
+{
+	margin:0px;
+	padding:0px;
+	width:20px;
+}
+
+.tab_signin
+{
+	position: absolute;
+	display:block;
+	width: 280px;
+	height: 180px;
+	/*margin-left: 100px;*/
+	/*margin-top: 100px;*/
+	background-image: url("../img/military2.jpg");
+	/*background-color:rgb(0, 77, 0);*/
+}
+
+.welcome_msg
+{
+	position:relative;
+	color:white;
+	top:200px;
+	font-style:bold;
+	font-size:50px;
+}
+
+.suppr
+{
+	width:100%;
+}
+
+/*
+input[type="submit"]:hover
+{
+	background:white;
+}
+
+input[type="submit"]
+{
+	width:150px;
+	background:blue;
+	text-decoration:none;
+	border:3px solid black;
+	border-collapse: collapse;
+	margin:2px;
+	padding:5px;
+	font-size:16px;
+}
+input[type="text"], input[type="number"]
+{
+	//display:none;
+	background:none;
+	text-decoration:none;
+	border:3px solid black;
+	border-collapse: collapse;
+	margin:0px;
+	padding:5px;
+	font-size:16px;
+}
+*/
+.page
+{
+	text-align:center;
+	width:100%;
+	position:absolute;
+	left:200px;
+	right:0px;
+	top:50px;
+	bottom:0px;
+}
+
+.user_log img
+{
+	height:20px;
+}

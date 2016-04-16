@@ -1,0 +1,212 @@
+body
+{
+	font-family:sans-serif;
+	text-align:center;
+	background-color:#505050;
+	margin:0px;
+	padding:0px;
+}
+
+img
+{
+	border:0px;
+}
+
+p
+{
+	margin-top:0px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-right:25px;
+}
+
+form
+{
+	display:inline;
+}
+
+#global
+{
+	margin-left: auto;
+	margin-right: auto;
+	padding:17px;
+	text-align:center;
+	width:1420px;
+	height:870px;
+	//background-color:red;
+}
+
+.block_style
+{
+	padding:0px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color:#909090;
+	display:block;
+	text-align:left;
+	border-radius:10px;
+	margin:0px;
+	padding:0px;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 1);
+}
+
+#header
+{
+	width:1420px;
+	height:137px;
+}
+
+#logo
+{
+	display:block;
+	position:absolute;
+	margin-left:10px;
+	margin-top:10px;
+	height:110px;
+}
+
+#loupe
+{
+	display:block;
+	position:absolute;
+	margin-left:1134px;
+	padding-top:10px;
+	height:147px;
+}
+
+#reload
+{
+	display:block;
+	position:absolute;
+	margin-left:1390px;
+	margin-top:10px;
+	width:20px;
+}
+
+#close
+{
+	display:block;
+	position:absolute;
+	margin-left:1390px;
+	margin-top:107px;
+	width:20px;
+}
+
+#corp
+{
+}
+
+#menu_left
+{
+	position:absolute;
+	width:140px;
+	height:410px;
+
+	margin-top:20px;
+	padding-top:15px;
+	text-align:center;
+	margin-left:30px;
+}
+
+#content_menu
+{
+	display:inline-block;
+	padding-top:0px;
+	margin-left:0px;
+	width:70px;
+	margin-bottom:5px;
+}
+
+#menu_center
+{
+	position:absolute;
+	width:1020px;
+	height:581px;
+
+	margin-top:20px;
+	margin-left:200px;
+}
+
+#cluster
+{
+	width:1000px;
+	padding:10px;
+}
+
+#menu_right
+{
+	position:absolute;
+	width:140px;
+	height:410px;
+
+	margin-top:20px;
+	padding-top:15px;
+	text-align:center;
+	margin-left:1250px;
+}
+
+#menu_vert
+{
+	position:absolute;
+	width:520px;
+	height:170px;
+	background-color:#88FF89;
+	margin-top:525px;
+	margin-left:-45px;
+}
+
+#entrez
+{
+	font-size:36px;
+	font-family:serif;
+}
+
+input
+{
+	height:17px;
+}
+
+input[type=text]
+{
+	width:380px;
+	padding:0px;
+	margin:0px;
+	margin-left:10px;
+}
+
+#ombre
+{
+	display:inline;
+	position:relative;
+	 text-shadow: 5px 5px 10px #ff0000;
+}
+
+.brick
+{
+	display:inline-block;
+	padding-top:0px;
+	margin-left:0px;
+	margin-bottom:5px;
+	background-image:url(resources/brick.jpg);
+	width:120px;
+	height:70px;
+	border:0px;
+}
+
+#zone1
+{
+	position:absolute;
+	margin-left:345px;
+	margin-top:345px;
+	width:76px;
+	height:135px;
+}
+
+#zone2
+{
+	position:absolute;
+	margin-left:804px;
+	margin-top:337px;
+	width:182px;
+	height:117px;
+}
